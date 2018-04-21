@@ -1,40 +1,32 @@
-# GazerV2
-
-[Discord Server](https://discord.gg/5dGwF2T)
-
-Packages
----------
-- discord.js ( Main Libray )
-- sqlite ( Main Database )
-- moment ( Timer )
-- weather.js ( Searching Weather )
-AND MORE
-
-
-How to install and use for yourself?
--------------
-
-- 1.) Download this project or git clone.
-- 2.) In you console (cmd) locate your this folder and open it. (Within CMD)
-- 3.) Run the following command in cmd `npm install`. That should install all the packages that you will need for the bot.
-- 4.) Now head over to the main file of the bot `commando.js` and replace the following
-```js
 const path = require('path');
 const Commando = require('discord.js-commando');
 const oneLine = require('common-tags').oneLine;
 const sql = require('sqlite');
 const client = new Commando.Client({
-	owner: ['YOUR_ID'],
-	unknownCommandResponse: false,
-	commandPrefix: '$'
+	owner: ['366931595363614721'],
+	unknownCommandResponse: true,
+	commandPrefix: '%'
 });
+
+// Express Tool - Keeps Bot Online
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
 
 client
 	.on('error', console.error)
 	.on('warn', console.warn)
 	.on('debug', console.log)
 	.on('ready', () => {
-    client.user.setGame('@Gazer#3861 help')
+    client.user.setGame('Commands ~> %help')
 		console.log(`Client ready; logged in as ${client.user.username}#${client.user.discriminator} (${client.user.id})`);
 	})
 	.on('disconnect', () => { console.warn('Disconnected!'); })
@@ -76,25 +68,18 @@ client.setProvider(
 
 client.registry
 .registerGroups([
-  ['moderation', 'Moderation'],
-  ['response', 'Random Response'],
+	['moderation', 'Moderation'],
+	['response', 'Random Response'],
   ['info', 'Info'],
-  ['search', 'Search'],
+  ['nsfw', 'Find NSFW content ( ͡° ͜ʖ ͡°)'],
+  ['pokedex', 'Get information from the PokéDex'],
+	['search', 'Search'],
   ['avatar-edit', 'Avatar Manipulation'],
   ['role-manage', 'Role Manage'],
-  ['games', 'Games'],
-  ['settings', 'Server Settings']
+	['games', 'Games'],
+	['settings', 'Server Settings']
 ])
-.registerDefaults()
-.registerCommandsIn(path.join(__dirname, 'commands'));
+	.registerDefaults()
+	.registerCommandsIn(path.join(__dirname, 'commands'));
 
-client.login("YOUR_BOT_TOKEN");
-```
-
-- 5.) Go back to console and run the following command `node --harmony commando.js`
-- 6.) Have fun :D
-
-Credits
---------
-
-All credits goes to `PainFX#4965` for making this all happen. 
+client.login(process.env.TOKEN);
