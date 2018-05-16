@@ -75,14 +75,16 @@ client.setProvider(
 
 client.registry
 .registerGroups([
-  ['moderation', 'Moderation'],
-  ['response', 'Random Response'],
-  ['info', 'Info'],
-  ['search', 'Search'],
-  ['avatar-edit', 'Avatar Manipulation'],
-  ['role-manage', 'Role Manage'],
-  ['games', 'Games'],
-  ['settings', 'Server Settings']
+	['moderation', 'Moderation'],
+	['response', 'Random Response'],
+  	['info', 'Info'],
+  	['nsfw', 'Find NSFW content ( ͡° ͜ʖ ͡°)'],
+  	['pokedex', 'Get information from the PokéDex'],
+	['search', 'Search'],
+ 	['avatar-edit', 'Avatar Manipulation'],
+  	['role-manage', 'Role Manage'],
+	['games', 'Games'],
+	['settings', 'Server Settings']
 ])
 .registerDefaults()
 .registerCommandsIn(path.join(__dirname, 'commands'));
