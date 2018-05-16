@@ -1,6 +1,5 @@
-# GazerV2
+# FMOB
 
-[Discord Server](https://discord.gg/5dGwF2T)
 
 Packages
 ---------
@@ -97,4 +96,4 @@ client.login("YOUR_BOT_TOKEN");
 Credits
 --------
 
-All credits goes to `PainFX#4965` for making this all happen. 
+All credits goes to `PainFX#0001` for the original source.
